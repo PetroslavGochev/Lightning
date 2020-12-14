@@ -12,6 +12,38 @@ a {
   color: #0366d6;
 }
 
+.headline {
+    font-style: italic;
+    color: #86c7ff;
+    position: absolute;
+    top: 80px;
+    left: 52%;
+    margin-left: -100px;
+}
+
+.second-headline {
+    font-style: italic;
+    color: #86c7ff;
+    position: absolute;
+    top: 125px;
+    left: 32%;
+    margin-left: -100px;
+}
+
+.favourite-offers-title {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.card-container {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    width: 80%;
+    justify-content: center;
+    display: flex;
+    margin-left: 10.5rem;
+}
+
 .btn-primary {
   color: #fff;
   background-color: #1b6ec2;
