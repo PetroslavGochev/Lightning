@@ -4,14 +4,16 @@ using Lightning.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Lightning.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201215131138_Initial-Migration")]
+    partial class InitialMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -38,18 +40,21 @@ namespace Lightning.Data.Migrations
                     b.Property<DateTime>("DateTo")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("LightningUserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("Package")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Status")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId1")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("LightningUserId");
+                    b.HasIndex("UserId1");
 
                     b.ToTable("Requests");
                 });
@@ -265,9 +270,9 @@ namespace Lightning.Data.Migrations
 
             modelBuilder.Entity("Lightning.Models.DBModels.Request", b =>
                 {
-                    b.HasOne("Lightning.Models.DBModels.LightningUser", "LightningUser")
+                    b.HasOne("Lightning.Models.DBModels.LightningUser", "User")
                         .WithMany("Requests")
-                        .HasForeignKey("LightningUserId");
+                        .HasForeignKey("UserId1");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
