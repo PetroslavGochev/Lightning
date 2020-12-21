@@ -1,4 +1,5 @@
 using Lightning.Data;
+using Lightning.Models.DBModels;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -31,7 +32,7 @@ namespace Lightning
                    options.UseSqlServer(
                        Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<IdentityUser, IdentityRole>(opt =>
+            services.AddIdentity<LightningUser, IdentityRole>(opt =>
             {
                 opt.Password.RequireDigit = true;
                 opt.Password.RequiredLength = 6;
