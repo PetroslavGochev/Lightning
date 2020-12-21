@@ -14,10 +14,10 @@ a {
 
 .headline {
     font-style: italic;
-    color: #86c7ff;
+    color: white;
     position: absolute;
-    top: 95px;
-    left: 52%;
+    top: 86px;
+    left: 51%;
     margin-left: -100px;
 }
 
@@ -26,19 +26,19 @@ a {
 }
 
 .img-title {
+    top: 1960px;
     color: white;
     font-weight: bold;
     position: absolute;
-    top: 1700px;
-    left: 412px;
+    left: 260px;
 }
 
 .img-content {
     color: white;
     position: absolute;
-    top: 1750px;
+    top: 2030px;
     width: 520px;
-    left: 370px;
+    left: 230px;
     font-size: 14px;
     font-weight: bold;
 }
@@ -48,17 +48,17 @@ a {
     font-weight: bold;
     color: white;
     position: absolute;
-    top: 1770px;
+    top: 2060px;
     width: 520px;
-    left: 530px;
+    left: 370px;
 }
 
 .second-headline {
     font-style: italic;
-    color: #86c7ff;
+    color: white;
     position: absolute;
-    top: 135px;
-    left: 32%;
+    top: 127px;
+    left: 26%;
     margin-left: -100px;
 }
 
