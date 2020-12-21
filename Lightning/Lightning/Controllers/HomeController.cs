@@ -23,6 +23,11 @@ namespace Lightning.Controllers
             return View();
         }
 
+        public IActionResult Offers()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();

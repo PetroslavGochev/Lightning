@@ -20,10 +20,10 @@
                     <partial name="_LoginPartial" />
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Оферти</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Offers">Оферти</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Заяви пакет</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Requests" asp-action="Create">Заяви пакет</a>
                         </li>
                     </ul>
                 </div>
@@ -53,8 +53,12 @@
             </div>
         </div>
         <div class="footer-col">
-            <p class="footer-paragraphs">&copy; 2020 - Lightning - <a class="footer-links" asp-area="" asp-controller="Home" asp-action="Privacy">Условия за ползване</a></p>
-            <a class="footer-links" asp-area="" asp-controller="Home" asp-action="Privacy">За нас</a>
+            <div style="display:grid;">
+                <a class="footer-links" asp-area="" asp-controller="Home" asp-action="Privacy">Условия за ползване</a>
+                <a class="footer-links" asp-area="" asp-controller="Home" asp-action="Privacy">За нас</a>
+            </div>
+
+            <p class="footer-paragraphs">&copy; 2020 - Lightning</p>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
