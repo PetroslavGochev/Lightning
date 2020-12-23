@@ -8,31 +8,31 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1 style="text-align: center">Заявки</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
+<p style="margin-left: 4.7rem">
+    <a asp-action="Create">Създай нова</a>
 </p>
-<table class="table">
+<table class="table" style="margin-left: 4rem; width: 90%;">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Status)
+                Статус
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Content)
+                Начална дата за включване
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DateFrom)
+                Крайна дата за включване
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DateTo)
+                Пакет
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Package)
+                Адрес
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Address)
+               Допълнение към адреса
             </th>
             <th></th>
         </tr>
@@ -40,37 +40,29 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Status)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Content)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DateFrom)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DateTo)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Package)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Address)
-                </td>
-                <td>
-
-                    @{
-                        if (User.Identity.Name == "rosenbobchev3@abv.bg")
-                        {
-
-                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                        }
-                    }
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a>
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateFrom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateTo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Package)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Content)
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Id">Детайли</a>
+            </td>
+        </tr>
         }
     </tbody>
 </table>

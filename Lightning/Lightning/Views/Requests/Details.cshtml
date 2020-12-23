@@ -8,57 +8,57 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1 style="text-align: center">Детайли на заявка</h1>
 
 <div>
-    <h4>Request</h4>
     <hr />
-    <dl class="row">
+    <dl class="row" style="margin-left: 35%; width: 100%;">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Status)
+            Статус
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Status)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Content)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Content)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.DateFrom)
+            Начална дата на включване
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.DateFrom)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.DateTo)
+            Крайна дата на включване
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.DateTo)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Package)
+            Пакет
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Package)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Address)
+            Адрес
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Address)
         </dd>
+        <dt class="col-sm-2">
+            Допълнение към адреса
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Content)
+        </dd>
     </dl>
 </div>
-<div>
+<div style="display: flex; justify-content: space-evenly; width: 50%; margin-bottom: 2rem; margin-left: 23rem;">
     @{
         if (User.Identity.Name == "rosenbobchev3@abv.bg")
         {
 
-            <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+            <a asp-area="" asp-controller="Requests" asp-action="ApproveStatus" asp-route-id="@Model.Id">Одобри</a>
+            <a asp-area="" asp-controller="Requests" asp-action="RejectStatus" asp-route-id="@Model.Id">Откажи</a>
         }
      }
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Назад</a>
 </div>

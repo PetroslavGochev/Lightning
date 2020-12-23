@@ -23,7 +23,18 @@
             </div>
             <div class="form-group">
                 <label asp-for="Package" class="control-label">Пакет</label>
-                <input asp-for="Package" class="form-control" />
+                <select asp-for="Package" class="form-control" >
+                    <option>Моля изберете пакет</option>
+                    <option>Интернет 50</option>
+                    <option>Интернет 75</option>
+                    <option>Интернет 100</option>
+                    <option>ТВ 100</option>
+                    <option>ТВ 200</option>
+                    <option>ТВ 300</option>
+                    <option>МАКС 75</option>
+                    <option>МАКС 100</option>
+                    <option>МАКС 300</option>
+                </select>
                 <span asp-validation-for="Package" class="text-danger"></span>
             </div>
             <div class="form-group">

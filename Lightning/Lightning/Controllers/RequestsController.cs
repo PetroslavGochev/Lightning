@@ -32,7 +32,15 @@ namespace Lightning.Controllers
             }
             else
             {
-                return View(await _context.Requests.Where(x => x.LightningUser.Id == user.Id).ToListAsync());
+                if (User.Identity.Name == "rosenbobchev3@abv.bg")
+                {
+                    return View(await _context.Requests.ToListAsync());
+                }
+                else
+                {
+                    return View(await _context.Requests.Where(x => x.LightningUser.Id == user.Id).ToListAsync());
+                }
+
             }
         }
 
@@ -55,8 +63,14 @@ namespace Lightning.Controllers
         }
 
         // GET: Requests/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                return this.Redirect("/");
+            }
+
             return View();
         }
 
@@ -71,6 +85,7 @@ namespace Lightning.Controllers
             if (ModelState.IsValid)
             {
                 var requestToAdd = request.LightningUser = user;
+                var changeStatus = request.Status = "Изчакване";
                 _context.Add(request);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -97,20 +112,71 @@ namespace Lightning.Controllers
         // POST: Requests/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Status,Content,DateFrom,DateTo,Package,Address")] Request request)
+
+        public async Task<IActionResult> RejectStatus(int id, [Bind("Id,Status,Content,DateFrom,DateTo,Package,Address")] Request request)
         {
             if (id != request.Id)
             {
                 return NotFound();
             }
 
+            Request requestFromDB = _context.Requests.Where(x => x.Id == request.Id).Select(x => new Request
+            {
+                Id = x.Id,
+                Status = "Отхвърлена",
+                LightningUser = x.LightningUser,
+                Content = x.Content,
+                DateFrom = x.DateFrom,
+                DateTo = x.DateTo,
+                Package = x.Package,
+                Address = x.Address
+            }).FirstOrDefault();
+
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(request);
+                    _context.Update(requestFromDB);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!RequestExists(request.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(request);
+        }
+
+        public async Task<IActionResult> ApproveStatus(int id, [Bind("Id,Status,Content,DateFrom,DateTo,Package,Address")] Request request)
+        {
+            if (id != request.Id)
+            {
+                return NotFound();
+            }
+
+            Request requestFromDB = _context.Requests.Where(x => x.Id == request.Id).Select(x => new Request
+            { Id = x.Id,
+              Status = "Одобрена",
+              LightningUser = x.LightningUser,
+              Content = x.Content,
+              DateFrom = x.DateFrom,
+              DateTo = x.DateTo,
+              Package = x.Package,
+              Address = x.Address}).FirstOrDefault();
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(requestFromDB);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
