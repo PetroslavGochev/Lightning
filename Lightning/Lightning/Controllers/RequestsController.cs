@@ -32,7 +32,7 @@ namespace Lightning.Controllers
             }
             else
             {
-                if (User.Identity.Name == "rosenbobchev3@abv.bg")
+                if (User.Identity.Name == "admin@abv.bg")
                 {
                     return View(await _context.Requests.ToListAsync());
                 }
